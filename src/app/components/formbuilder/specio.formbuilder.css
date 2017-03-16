@@ -1,0 +1,52 @@
+.section-panel {
+	height:100%;
+	padding:1em;
+	box-sizing:border-box;
+	position:fixed;
+	left:0;
+	top:0;
+	bottom:0;
+	width:300px;
+	border-right:2px dashed black;
+}
+
+.section-panel .section {
+	background-color:#ccc;
+	border-radius:3px;
+	margin:10px 0;
+	padding:4px;
+	list-style:none;
+	position:relative;
+}
+
+.section-panel .section button {
+	position:absolute;
+	top: 3px;
+	right: 10px;
+}
+
+.editor-main {
+	padding:1em;
+	box-sizing:border-box;
+	position:absolute;
+	top:0;
+	left:300px;
+	right:0px;
+	bottom:0px;
+}
+
+.editor-main .document-info {
+	padding:2em 0;
+	box-sizing:border-box;
+}
+
+.editor-main .section.expanded fieldset {
+	min-height:100px;
+}
+
+
+.template-controls {
+	position:absolute;
+	top:2em;
+	right:2em;
+}

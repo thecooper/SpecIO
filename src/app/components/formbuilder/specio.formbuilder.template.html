@@ -1,0 +1,40 @@
+<div class="section-panel">
+	<h3>Sections</h3>
+	<div class="section-panel-commands">
+		<button type="button" (click)="template.add_section()">Add Section</button>
+		<button type="button" (click)="toggleExpandSections()">Expand/Collapse All</button>
+	</div>
+	<ul dnd-sortable-container [sortableData]="template.sections">
+		<li class='section' dnd-sortable *ngFor="let section of template.sections; let i = index" [sortableIndex]="i"
+			(click)="selectSection(section)">
+			{{section.name}} - <button type="button" (click)="removeSection(section)">Remove</button>
+		</li>
+	</ul>
+</div>
+<div class="editor-main">
+	<div class="document-info">
+		<span>{{documentType}} Name: {{template.name}}</span><br/>
+		<span>{{documentType}} Description: {{template.description}}</span>
+		<div class="template-controls">
+			<button>Edit</button>
+			<button>Save</button>
+		</div>
+	</div>
+	<div class="document-body">
+		<div class="document-sections">
+			<ul>
+				<li *ngFor="let section of template.sections" class="section" [class.expanded]="section.expanded" (click)="section.toggleExpanded()">
+					<fieldset>
+						<legend>{{section.name}}</legend>
+						<div class="section-content">
+							<div class="fields-wrapper">
+							</div>
+						</div>
+					</fieldset>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="draggable-elements"></div>
+</div>
+<div class="popout-panel"></div>
