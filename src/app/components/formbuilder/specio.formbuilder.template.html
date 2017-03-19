@@ -23,18 +23,27 @@
 	<div class="document-body">
 		<div class="document-sections">
 			<ul>
-				<li *ngFor="let section of template.sections" class="section" [class.expanded]="section.expanded" (click)="section.toggleExpanded()">
+				<li *ngFor="let section of template.sections" class="section" [class.expanded]="section.expanded" (click)="section.toggleExpanded()" dnd-droppable (onDropSuccess)="fieldDroppedOnSection(section, $event)">
 					<fieldset>
 						<legend>{{section.name}}</legend>
 						<div class="section-content">
-							<div class="fields-wrapper">
-							</div>
+							<ul>
+								<li *ngFor="let field of section.fields">
+									<field [field]="field"></field>
+								</li>
+							</ul>
 						</div>
 					</fieldset>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<div class="draggable-elements"></div>
+	<div class="draggable-elements">
+		<ul>
+			<li *ngFor="let field of sampleFields" dnd-draggable [dragEnabled]="true" [dragData]="field">
+				<field [field]="field"></field>
+			</li>
+		</ul>
+	</div>
 </div>
 <div class="popout-panel"></div>

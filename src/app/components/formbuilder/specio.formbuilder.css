@@ -44,9 +44,36 @@
 	min-height:100px;
 }
 
+.editor-main .document-body {
+	margin-bottom:150px;
+}
+
 
 .template-controls {
 	position:absolute;
 	top:2em;
 	right:2em;
+}
+
+.editor-main .draggable-elements {
+	position:absolute;
+	left:0;
+	right:0;
+	height:150px;
+	line-height:150px;
+	bottom:0;
+	box-sizing:border-box;
+	background-color:#ccc;
+}
+
+.editor-main .draggable-elements > ul {
+	text-align: center;
+	line-height:150px;
+}
+
+.editor-main .draggable-elements > ul > li {
+	display:inline-block;
+	line-height:1em;
+	text-align:center;
+	vertical-align:middle;
 }

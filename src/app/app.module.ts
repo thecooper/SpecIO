@@ -1,12 +1,10 @@
 import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormBuilder } from './components/formbuilder/specio.formbuilder'
+import { FormbuilderModule } from './components/formbuilder/specio.formbuilder.module';
 import { AppComponent }  from './app.component';
-import { DndModule } from 'ng2-dnd';
 
 @NgModule({
-  imports:      [ BrowserModule, DndModule.forRoot() ],
-  declarations: [ AppComponent, FormBuilder ],
+  imports:      [ FormbuilderModule ],
+  declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

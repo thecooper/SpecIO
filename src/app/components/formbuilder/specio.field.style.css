@@ -1,0 +1,19 @@
+.field {
+	background-color:#eee;
+	vertical-align:top;
+	margin:0 1em;
+	padding:1em;
+	box-sizing:border-box;
+	max-width:120px;
+}
+
+.field-name {
+}
+
+.field-type {
+	margin-top:0.5em;
+}
+
+.field-type > * {
+	width:100%;
+}

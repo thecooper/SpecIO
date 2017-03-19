@@ -1,0 +1,12 @@
+<div class="field">
+	<div class='field-name'>{{field.name}}</div>
+	<div class='field-type' *ngIf="field.type == 'text'">
+		<p>{{field.value}}</p>
+	</div>
+	<div class='field-type' *ngIf="field.type == 'small_input'">
+		<input type="text" [value]="field.value" disabled="disabled" />
+	</div>
+	<div class='field-type' *ngIf="field.type == 'dropdown'">
+		<select disabled="disabled"><option value="">Value 1</option></select>
+	</div>
+</div>
