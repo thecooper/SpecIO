@@ -40,12 +40,22 @@
 	box-sizing:border-box;
 }
 
+.editor-main .section fieldset {
+	min-height:30px;
+	transition:all 0.3s;
+}
+
 .editor-main .section.expanded fieldset {
 	min-height:100px;
 }
 
 .editor-main .document-body {
 	margin-bottom:150px;
+}
+
+.editor-main .document-body .section-content > ul > li {
+	display:inline-block;
+	margin:0.25em;
 }
 
 
@@ -66,14 +76,17 @@
 	background-color:#ccc;
 }
 
-.editor-main .draggable-elements > ul {
-	text-align: center;
-	line-height:150px;
+.editor-main .draggable-elements {
+	display:flex;
+	align-items:center;
+	align-content:space-around;
 }
 
-.editor-main .draggable-elements > ul > li {
-	display:inline-block;
-	line-height:1em;
-	text-align:center;
-	vertical-align:middle;
+.editor-main .draggable-elements .draggable-element {
+	border:1px solid black;
+	flex-grow:1;
+}
+
+.position-highlight {
+	background:#ccc;
 }

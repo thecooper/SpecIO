@@ -6,8 +6,8 @@
 	</div>
 	<ul dnd-sortable-container [sortableData]="template.sections">
 		<li class='section' dnd-sortable *ngFor="let section of template.sections; let i = index" [sortableIndex]="i"
-			(click)="selectSection(section)">
-			{{section.name}} - <button type="button" (click)="removeSection(section)">Remove</button>
+			(click)="toggleSection(section)">
+			{{section.name}} - <button type="button" (click)="removeSection(section)">X</button>
 		</li>
 	</ul>
 </div>
@@ -23,27 +23,26 @@
 	<div class="document-body">
 		<div class="document-sections">
 			<ul>
-				<li *ngFor="let section of template.sections" class="section" [class.expanded]="section.expanded" (click)="section.toggleExpanded()" dnd-droppable (onDropSuccess)="fieldDroppedOnSection(section, $event)">
+				<li *ngFor="let section of template.sections" class="section" [class.expanded]="section.expanded" dnd-droppable (onDropSuccess)="fieldDroppedOnSection(section, $event)" (onDragOver)="debounceDragOver(section, $event)" (onDragLeave)="debounceLeave(section, $event)">
 					<fieldset>
 						<legend>{{section.name}}</legend>
-						<div class="section-content">
-							<ul>
-								<li *ngFor="let field of section.fields">
-									<field [field]="field"></field>
-								</li>
-							</ul>
-						</div>
+						<gridster [options]="gridsterOptions" draggableOptions="{handlerClass:'field-handle'}">
+							<gridster-item *ngFor="let field of section.fields" [(x)]="field.x" [(y)]="field.y" [w]="field.width" [h]="field.height">
+								<div class="field-wrapper">
+									<div class="field-handle">Move</div>
+									<field field="field"></field>
+								</div>
+							</gridster-item>
+						</gridster>
 					</fieldset>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<div class="draggable-elements">
-		<ul>
-			<li *ngFor="let field of sampleFields" dnd-draggable [dragEnabled]="true" [dragData]="field">
-				<field [field]="field"></field>
-			</li>
-		</ul>
+		<div class="draggable-element" gridsterItemPrototype *ngFor="let field of sampleFields" [config]="{helper:true}" [w]="1" [h]="2" (enter)="debounceEnter()" (out)="debounceLeave()">
+			<span>{{field.name}}</span>
+		</div>
 	</div>
 </div>
 <div class="popout-panel"></div>

@@ -3,6 +3,7 @@ import { Template } from './specio.template';
 import { Section } from './specio.section';
 import { Field } from './specio.field';
 import { FieldSampleService } from './specio.field-sample.service';
+import { IGridsterOptions } from 'angular2gridster';
 
 @Component({
 	selector:'form-builder',
@@ -14,6 +15,11 @@ export class FormbuilderComponent {
 	documentType: string;
 	template: Template;
 	sampleFields:Field[];
+	dragStartEvent:any;
+	gridsterOptions:IGridsterOptions = {
+		lanes:4
+	};
+
 
 	constructor(private sampleFieldService:FieldSampleService) {
 		this.documentType = "Template";
@@ -38,6 +44,10 @@ export class FormbuilderComponent {
 		}
 	}
 
+	toggleSection(section:Section) {
+		section.expanded = !section.expanded;
+	}
+
 	toggleExpandSections() {
 		var expandSections = false;
 
@@ -53,10 +63,30 @@ export class FormbuilderComponent {
 	}
 
 	fieldDroppedOnSection(section:Section, $event:any) {
-		if($event && $event.dragData && $event.dragData.copy) {
-			section.fields.push($event.dragData.copy());
-		} else {
-			console.error("No field data was available to copy to the selected section");
+		if(this.dragStartEvent.mouseEvent.target.classList.length && this.dragStartEvent.mouseEvent.target.classList.length > 1) {
+			if(this.dragStartEvent.mouseEvent.target.classList.value.split(" ").some(function(el:string) { return el == "draggable-element"; })){
+				if($event && $event.dragData && $event.dragData.copy) {
+					var newField = $event.dragData.copy();
+					newField.name = "Field" + Math.random();
+					section.fields.push(newField);
+					console.log(section.fields);
+				} else {
+					console.error("No field data was available to copy to the selected section");
+				}
+			}
 		}
+	}
+
+	debounceLeave(section:Section) {
+		setTimeout(function() {
+			section.expanded = false;
+		}, 500);
+	}
+
+	debounceEnter(section:Section) {
+		console.log("In debounceEnter");
+		setTimeout(function() {
+			section.expanded = true;
+		}, 500);
 	}
 }

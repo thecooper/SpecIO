@@ -3,8 +3,8 @@ export class Field {
 	required:boolean;
 	list:string[];
 	type:string;
-	row:number;
-	col:number;
+	y?:number;
+	x?:number;
 	height:number;
 	width:number;
 	value:string;
@@ -14,10 +14,8 @@ export class Field {
 		this.required = false;
 		this.list = [];
 		this.type = type;
-		this.row = 0;
-		this.col = 0;
-		this.height = 0;
-		this.width = 0;
+		this.height = 1;
+		this.width = 1;
 	}
 
 	copy() {

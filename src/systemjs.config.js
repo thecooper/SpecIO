@@ -26,7 +26,8 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js'
+      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js',
+      'angular2gridster':          'npm:angular2gridster'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -35,6 +36,10 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+      angular2gridster: {
+        defaultExtension: 'js',
+        main: "dist/index.js"
       }
     }
   });
